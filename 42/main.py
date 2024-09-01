@@ -59,3 +59,52 @@ def rotate(nums: list, k: int):
     reverse(nums, k, len(nums) - 1)
     return nums
 
+
+
+"""Paskal uchburchagi
+Paskal uchburchagining dastlabki n ta qatorini toping.
+
+💡 Paskal uchburchagi har bir element o'zidan yuqoridagi 2 ta element yig'indisiga teng.
+
+
+Misol 1:
+Kiritish: 2
+Natija: [[1], [1,1]]
+Misol 2:
+Kiritish: 5
+Natija: [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]"""
+"first solution"
+def paskal_uchburchagi(n):
+    result = []
+    for i in range(n):
+        if i == 0:
+            result.append([1])
+        else:
+            prev_row = [0] + result[-1] + [0]
+            new_row = []
+            for j in range(len(prev_row) - 1):
+                new_row.append(prev_row[j] + prev_row[j + 1])
+            result.append(new_row)
+    return result
+
+"second solution"
+def generate_row(prev):
+    next_ = [1]
+    for i in range(len(prev) - 1):
+        next_.append(prev[i] + prev[i + 1])
+    next_.append(1)
+    return next_
+
+def generate(n):
+    if n == 0:
+        return []
+    
+    row = [1]
+    result = [row]
+
+    for _ in range(n-1):
+        row = generate_row(row)
+        result.append(row)
+
+    return result
+
