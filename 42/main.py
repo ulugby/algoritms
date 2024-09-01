@@ -108,3 +108,34 @@ def generate(n):
 
     return result
 
+
+"""Ro'yxat kvadrati
+Sizga berilgan sonlar ro'yxati o'sish tartibida saralangan. Har bir elementning kvadratini hisoblab, natijani saralangan holda qaytaring.
+
+Misol 1:
+Kiritish: nums = [-4,-1,0,3,10]
+Natija: [0,1,9,16,100]
+Misol 2:
+Kiritish: nums = [-7,-3,2,3,11]
+Natija: [4,9,9,49,121]"""
+
+"first solution"
+def sortedSquares(nums):
+    return sorted([x**2 for x in nums])
+
+
+"second solution"
+def sortedSquares(nums):
+    i, j = 0, len(nums) - 1
+    result = []
+
+    while i <= j:
+        if abs(nums[i]) < abs(nums[j]):
+            result.append(nums[j] ** 2)
+            j -= 1
+        else:
+            result.append(nums[i] ** 2)
+            i += 1
+
+    result.reverse()
+    return result
